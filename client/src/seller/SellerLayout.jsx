@@ -1,0 +1,77 @@
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
+import { assets } from "../assets/assets";
+import { NavLink, useLocation, Navigate } from "react-router-dom";
+
+import AddProduct from "./AddProduct";
+import ProductList from "./ProductList";
+import Orders from "./Orders";
+
+const SellerLayout = () => {
+  const { isSeller, setIsSeller, navigate } = useContext(AppContext);
+  const location = useLocation();
+
+  const sidebarLinks = [
+    { name: "Add Product", path: "/seller", icon: assets.add_icon },
+    { name: "Product List", path: "/seller/product-list", icon: assets.product_list_icon },
+    { name: "Orders", path: "/seller/orders", icon: assets.order_icon },
+  ];
+
+  // Decide which component to render
+  let PageComponent = null;
+  if (location.pathname === "/seller") PageComponent = AddProduct;
+  else if (location.pathname === "/seller/product-list") PageComponent = ProductList;
+  else if (location.pathname === "/seller/orders") PageComponent = Orders;
+
+  return (
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <div className="md:w-64 w-16 border-r h-screen text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
+        {sidebarLinks.map((item) => (
+          <NavLink
+            to={item.path}
+            key={item.name}
+            end={item.path === "/seller"}
+            className={({ isActive }) =>
+              `flex items-center py-3 px-4 gap-3 ${
+                isActive
+                  ? "border-r-4 md:border-r-[6px] bg-indigo-300 border-indigo-500 text-indigo-500"
+                  : "hover:bg-gray-100/90 border-white"
+              }`
+            }
+          >
+            <img src={item.icon} alt="" className="w-7 h-7" />
+            <p className="md:block hidden text-center">{item.name}</p>
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1">
+        {/* Top Navbar */}
+        <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white transition-all duration-300">
+          <h1 className="text-2xl text-orange-600">Maa Janki Admin Page</h1>
+          <div className="flex items-center gap-5 text-gray-500">
+            <p>Hi! Admin</p>
+            <button
+              onClick={() => {
+                setIsSeller(false);
+                navigate("/");
+              }}
+              className="border rounded-full text-sm px-4 py-1 cursor-pointer"
+            >
+              Logout
+            </button>
+          </div>
+        </div>
+
+        {/* Render the selected page */}
+        <div className="p-6">
+          {PageComponent && <PageComponent />}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default SellerLayout;
