@@ -2,6 +2,7 @@ import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import path from "path";
+import fs from "fs";
 
 //register user : /api/user/register
 
@@ -165,6 +166,50 @@ export const uploadAvatar = async (req, res) => {
     return res.json({
       success: true,
       message: "Avatar updated",
+      user: {
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", success: false });
+  }
+};
+
+// delete avatar : /api/user/avatar (DELETE)
+export const deleteAvatar = async (req, res) => {
+  try {
+    const userId = req.user;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorised", success: false });
+    }
+
+    const user = await User.findById(userId).select("-password");
+    if (!user) {
+      return res.status(404).json({ message: "User not found", success: false });
+    }
+
+    const currentAvatar = user.avatar;
+    if (currentAvatar && currentAvatar.startsWith("/images/")) {
+      const filename = currentAvatar.replace("/images/", "");
+      const filePath = path.join(process.cwd(), "uploads", filename);
+      if (fs.existsSync(filePath)) {
+        try {
+          fs.unlinkSync(filePath);
+        } catch (err) {
+          console.error("Failed to delete avatar file", err);
+        }
+      }
+    }
+
+    user.avatar = null;
+    await user.save();
+
+    return res.json({
+      success: true,
+      message: "Avatar removed",
       user: {
         name: user.name,
         email: user.email,

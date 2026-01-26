@@ -1,7 +1,6 @@
 // CategoryGrid.jsx
 import { useState, useMemo } from "react";
 import "./category-grid.css";
-import { categories } from "../assets/assets.jsx";
 
 
 const categories = [
