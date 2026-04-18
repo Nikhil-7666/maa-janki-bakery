@@ -1,10 +1,10 @@
 import bakery_image from "./bakery.jpg";
 import namkeens_image from "./namkeens.PNG";
 import snacks_image from "./snacks.JPG";
-import sweets_image from "./sweet.jpg";
+import sweets_image from "./sweet.JPG";
 import chocolates_image from "./chocolates.JPG";
 import coldrinks_image from "./coldrinks.PNG";
-import icecreams_image from "./ice-cream.JPG";
+import icecreams_image from "./ice-cream.png";
 import spices_image from "./spices.PNG";
 import dairy_image from "./dairy.PNG";
 import biscuits_image from "./biscuits.PNG";
@@ -12,7 +12,7 @@ import dryfruits_image from "./dryfruits.PNG";
 import bestdeal_image from "./bestdeal.PNG";
 import others_image from "./others.PNG";
 import celebration_image from "./celebration.PNG";
-  //dummy Products
+//dummy Products
 import wheat_image from "./wheat.JPG";
 import twist_image from "./twist.JPG";
 import aloo_bhujia_image from "./aloo-bhujia.PNG";
@@ -38,7 +38,7 @@ import amul_butter_image from "./amul-butter.PNG";
 // Biscuits
 import parleG_image from "./parleG.PNG";
 import oreo_image from "./oreo.PNG";
- 
+
 //icons
 import star_icon from "./star_icon.svg";
 import star_dull_icon from "./star_dull_icon.svg";
@@ -62,7 +62,7 @@ export const assets = {
   product_list_icon,
   upload_area,
   box_icon
- 
+
 };
 
 
@@ -160,7 +160,7 @@ export const dummyProducts = [
     _id: "bk01",
     name: "Wheat Khari [250 gm]",
     category: "Bakery",
-    price:100 ,
+    price: 100,
     offerPrice: 80,
     image: [wheat_image],
     description: [
@@ -191,7 +191,7 @@ export const dummyProducts = [
     category: "Namkeens",
     price: 50,
     offerPrice: 45,
-    image: [aloo_bhujia_image,aloo_bhujia_2],
+    image: [aloo_bhujia_image, aloo_bhujia_2],
     description: ["Crispy and spicy", "Perfect tea-time snack"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -360,9 +360,9 @@ export const dummyProducts = [
     price: 10,
     offerPrice: 10,
     image: [panipuri_image],
-    description: [ "Tangy and spicy masala mix",
-     "Specially crafted for delicious pani puri water",
-     "Quick and easy to prepare at home"],
+    description: ["Tangy and spicy masala mix",
+      "Specially crafted for delicious pani puri water",
+      "Quick and easy to prepare at home"],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     inStock: true,

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { assets } from "../assets/assets";
-import { NavLink, useLocation, Navigate } from "react-router-dom";
+import { NavLink, useLocation, Navigate, Outlet } from "react-router-dom";
 
 import AddProduct from "./AddProduct";
 import ProductList from "./ProductList";
@@ -12,16 +12,12 @@ const SellerLayout = () => {
   const location = useLocation();
 
   const sidebarLinks = [
-    { name: "Add Product", path: "/seller", icon: assets.add_icon },
+    { name: "Dashboard", path: "/seller", icon: assets.order_icon }, // Using order_icon as placeholder
+    { name: "Add Product", path: "/seller/add-product", icon: assets.add_icon },
     { name: "Product List", path: "/seller/product-list", icon: assets.product_list_icon },
     { name: "Orders", path: "/seller/orders", icon: assets.order_icon },
   ];
 
-  // Decide which component to render
-  let PageComponent = null;
-  if (location.pathname === "/seller") PageComponent = AddProduct;
-  else if (location.pathname === "/seller/product-list") PageComponent = ProductList;
-  else if (location.pathname === "/seller/orders") PageComponent = Orders;
 
   return (
     <div className="flex min-h-screen">
@@ -66,8 +62,8 @@ const SellerLayout = () => {
         </div>
 
         {/* Render the selected page */}
-        <div className="p-6">
-          {PageComponent && <PageComponent />}
+        <div className="flex-1 h-full overflow-y-auto">
+          <Outlet />
         </div>
       </div>
     </div>

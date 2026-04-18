@@ -1,11 +1,12 @@
 import {useContext, useState, useEffect } from "react";
 import { dummyOrders } from "./assets/assets";
 import {AppContext} from "./AppContext";
+import toast from "react-hot-toast";
 import BackButton from "./components/BackButton";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
-  const {axios,user}=useContext(AppContext);
+  const {axios,user, backendUrl}=useContext(AppContext);
 
   const fetchOrders = async() => {
     try{
@@ -44,10 +45,15 @@ function MyOrders() {
           className="my-8 border border-gray-300 rounded-lg mb-10 p-4 py-5 max-w-4xl"
         >
           <p className="flex justify-between items-center gap-6">
-            <span>Order ID: {order._id}</span>
-            <span>Payment: {order.paymentType}</span>
-            <span>Total Amount: ₹{order.amount}</span>
-          </p>
+             <span>Order ID: {order._id}</span>
+             <span>Payment: {order.paymentType}</span>
+             {order.address && (
+               <span className="text-sm text-gray-500">
+                 Delivery to: {order.address.street || order.address.address}, {order.address.city}
+               </span>
+             )}
+             <span>Total Amount: ₹{order.amount}</span>
+           </p>
 
           {order.items.map((item, itemIndex) => (
             <div
@@ -59,8 +65,8 @@ function MyOrders() {
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="p-4 rounded-lg">
                   <img
-                    src={`http://localhost:5000/images/${item.product.images[0]}`}
-                    alt=""
+                    src={`${backendUrl}/products/${item.product.images?.[0]}`}
+                    alt={item.product.name}
                     className="w-16 h-16"
                   />
                 </div>

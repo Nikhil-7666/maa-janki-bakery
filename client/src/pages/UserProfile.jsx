@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import BackButton from "../components/BackButton";
 
 const UserProfile = () => {
-  const { user, setUser, axios, setShowUserLogin, fetchUser } =
+  const { user, setUser, axios, setShowUserLogin, fetchUser, backendUrl } =
     useContext(AppContext);
   const [preview, setPreview] = useState("");
   const [file, setFile] = useState(null);
@@ -17,11 +17,10 @@ const UserProfile = () => {
     if (avatarValue.startsWith("http://") || avatarValue.startsWith("https://"))
       return avatarValue;
 
-    const baseURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
     const avatarPath = avatarValue.startsWith("/")
       ? avatarValue
       : `/${avatarValue}`;
-    return `${baseURL}${avatarPath}`;
+    return `${backendUrl}${avatarPath}`;
   };
 
   useEffect(() => {
@@ -213,22 +212,140 @@ const UserProfile = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
           <div className="p-4 border border-gray-200 rounded-lg">
             <p className="font-semibold text-gray-900 mb-2">Account</p>
-            <p className="flex justify-between">
-              <span className="text-gray-500">Name</span>
-              <span className="font-medium text-gray-900">{user.name}</span>
-            </p>
-            <p className="flex justify-between mt-1">
-              <span className="text-gray-500">Email</span>
-              <span className="font-medium text-gray-900">{user.email}</span>
-            </p>
+            <div className="space-y-3">
+              <div>
+                <label className="text-gray-500 block mb-1">Name</label>
+                <input
+                  type="text"
+                  value={user.name}
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">Email</label>
+                <input
+                  type="email"
+                  value={user.email}
+                  disabled
+                  className="w-full p-2 border border-gray-100 bg-gray-50 rounded-md text-gray-400 cursor-not-allowed"
+                />
+              </div>
+            </div>
           </div>
           <div className="p-4 border border-gray-200 rounded-lg">
-            <p className="font-semibold text-gray-900 mb-2">Security</p>
-            <p className="text-gray-600">
-              Keep your account secure by using a strong password and do not
-              share login details.
-            </p>
+            <p className="font-semibold text-gray-900 mb-2">Personal Details</p>
+            <div className="space-y-3">
+              <div>
+                <label className="text-gray-500 block mb-1">Date of Birth</label>
+                <input
+                  type="date"
+                  value={user.dob || ""}
+                  onChange={(e) => setUser({ ...user, dob: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">Gender</label>
+                <select
+                  value={user.gender || ""}
+                  onChange={(e) => setUser({ ...user, gender: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                >
+                  <option value="">Select Gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">Phone Number</label>
+                <input
+                  type="tel"
+                  placeholder="Enter phone number"
+                  value={user.phoneNumber || ""}
+                  onChange={(e) => setUser({ ...user, phoneNumber: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+            </div>
           </div>
+
+          <div className="p-4 border border-gray-200 rounded-lg md:col-span-2">
+            <p className="font-semibold text-gray-900 mb-2">Address Details</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="md:col-span-2">
+                <label className="text-gray-500 block mb-1">Street Address</label>
+                <input
+                  type="text"
+                  placeholder="Enter street address"
+                  value={user.address || ""}
+                  onChange={(e) => setUser({ ...user, address: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">City</label>
+                <input
+                  type="text"
+                  placeholder="City"
+                  value={user.city || ""}
+                  onChange={(e) => setUser({ ...user, city: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">State</label>
+                <input
+                  type="text"
+                  placeholder="State"
+                  value={user.state || ""}
+                  onChange={(e) => setUser({ ...user, state: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+              <div>
+                <label className="text-gray-500 block mb-1">Pincode</label>
+                <input
+                  type="text"
+                  placeholder="Enter 6-digit pincode"
+                  value={user.pincode || ""}
+                  onChange={(e) => setUser({ ...user, pincode: e.target.value })}
+                  className="w-full p-2 border border-gray-200 rounded-md focus:outline-none focus:ring-1 focus:ring-indigo-500"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-end gap-3 mt-4">
+          <button
+            onClick={async () => {
+              try {
+                const { data } = await axios.post("/api/user/update-profile", {
+                  name: user.name,
+                  dob: user.dob,
+                  gender: user.gender,
+                  phoneNumber: user.phoneNumber,
+                  address: user.address,
+                  city: user.city,
+                  state: user.state,
+                  pincode: user.pincode,
+                });
+                if (data.success) {
+                  toast.success("Profile updated successfully");
+                  setUser({ ...user, ...data.user });
+                } else {
+                  toast.error(data.message || "Failed to update profile");
+                }
+              } catch (error) {
+                toast.error(error.response?.data?.message || error.message);
+              }
+            }}
+            className="px-8 py-3 bg-indigo-500 text-white rounded-full font-medium hover:bg-indigo-600 transition shadow-md"
+          >
+            Save Profile
+          </button>
         </div>
       </div>
     </div>

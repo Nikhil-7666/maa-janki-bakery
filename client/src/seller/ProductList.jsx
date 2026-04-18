@@ -3,17 +3,30 @@ import { AppContext } from "../AppContext";
 import toast from "react-hot-toast";
 
 const ProductList = () => {
-  const { products, axios, fetchProducts } = useContext(AppContext);
+  const { products, axios, fetchProducts, backendUrl, navigate } = useContext(AppContext);
 
   const toggleStock = async (id, inStock) => {
     try {
-      const { data } = await axios.post("/api/product/stock", { id, inStock });
+      const { data } = await axios.post("/api/products/stock", { id, inStock });
       if (data.success) {
         fetchProducts(); // refresh product list
         toast.success(data.message);
       }
     } catch (error) {
       toast.error(error.message || "Something went wrong");
+    }
+  };
+
+  const deleteProduct = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    try {
+      const { data } = await axios.delete(`/api/products/${id}`);
+      if (data.success) {
+        fetchProducts();
+        toast.success(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message || "Delete failed");
     }
   };
 
@@ -31,6 +44,7 @@ const ProductList = () => {
                   Selling Price
                 </th>
                 <th className="px-4 py-3 font-semibold truncate">In Stock</th>
+                <th className="px-4 py-3 font-semibold truncate text-center">Action</th>
               </tr>
             </thead>
             <tbody className="text-sm text-gray-500">
@@ -42,7 +56,7 @@ const ProductList = () => {
                         <img
                           src={
                             product.images?.[0]
-                              ? `http://localhost:5000/images/${product.images[0]}`
+                              ? `${backendUrl}/products/${product.images[0]}`
                               : "/placeholder.png"
                           }
                           alt={product.name || "Product"}
@@ -71,11 +85,25 @@ const ProductList = () => {
                         <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                       </label>
                     </td>
+                    <td className="px-4 py-3 text-center flex flex-col gap-1 items-center">
+                      <button 
+                        onClick={() => navigate(`/seller/edit-product/${product._id}`)}
+                        className="text-indigo-500 hover:text-indigo-700 font-medium"
+                      >
+                        Edit
+                      </button>
+                      <button 
+                        onClick={() => deleteProduct(product._id)}
+                        className="text-red-500 hover:text-red-700 font-medium"
+                      >
+                        Delete
+                      </button>
+                    </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4" className="text-center py-6 text-gray-400">
+                  <td colSpan="5" className="text-center py-6 text-gray-400">
                     No products found
                   </td>
                 </tr>

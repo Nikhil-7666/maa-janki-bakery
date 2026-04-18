@@ -20,6 +20,8 @@ const NavBar = () => {
     cartCount,
     searchQuery,
     setSearchQuery,
+    searchSuggestions,
+    setSearchSuggestions,
   } = useContext(AppContext);
 
   // Close mobile search when route changes
@@ -74,6 +76,7 @@ const NavBar = () => {
         !e.target.closest("input[placeholder='Search products']")
       ) {
         setShowMobileSearch(false);
+        setSearchSuggestions([]);
       }
     };
 
@@ -106,9 +109,9 @@ const NavBar = () => {
     
     // Construct the full URL from backend
     // Avatar from server is typically like "/images/filename.jpg"
-    const baseURL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+    const { backendUrl } = useContext(AppContext);
     const avatarPath = user.avatar.startsWith("/") ? user.avatar : `/${user.avatar}`;
-    return `${baseURL}${avatarPath}`;
+    return `${backendUrl}${avatarPath}`;
   };
 
   const profileImageUrl = user ? getProfileImageUrl() : profile_icon;
@@ -132,37 +135,59 @@ const NavBar = () => {
         </Link>
 
         {/* Search Box */}
-        <div className="hidden lg:flex items-center gap-2 border border-gray-300 px-3 rounded-full hover:border-orange-500 transition-colors">
-          <input
-            type="text"
-            placeholder="Search products"
-            value={searchQuery || ""}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="py-1.5 w-full bg-transparent outline-none placeholder-gray-500"
-          />
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.836 10.615 15 14.695"
-              stroke="#7A7B7D"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        <div className="hidden lg:flex flex-col relative">
+          <div className="flex items-center gap-2 border border-gray-300 px-3 rounded-full hover:border-orange-500 transition-colors">
+            <input
+              type="text"
+              placeholder="Search products"
+              value={searchQuery || ""}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="py-1.5 w-64 bg-transparent outline-none placeholder-gray-500"
             />
-            <path
-              clipRule="evenodd"
-              d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
-              stroke="#7A7B7D"
-              strokeWidth="1.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.836 10.615 15 14.695"
+                stroke="#7A7B7D"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                clipRule="evenodd"
+                d="M9.141 11.738c2.729-1.136 4.001-4.224 2.841-6.898S7.67.921 4.942 2.057C2.211 3.193.94 6.281 2.1 8.955s4.312 3.92 7.041 2.783"
+                stroke="#7A7B7D"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          {/* Search Suggestions Dropdown */}
+          {searchSuggestions.length > 0 && searchQuery && (
+            <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden">
+              {searchSuggestions.map((product) => (
+                <div
+                  key={product._id}
+                  onClick={() => {
+                    navigate(`/products/${product.category?.toLowerCase()}/${product._id}`);
+                    setSearchSuggestions([]);
+                    setSearchQuery("");
+                  }}
+                  className="px-4 py-2 hover:bg-gray-50 cursor-pointer flex flex-col border-b last:border-0 border-gray-100"
+                >
+                  <p className="text-sm font-medium text-gray-800">{product.name}</p>
+                  <p className="text-xs text-gray-500">{product.category}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Cart Icon */}
@@ -354,6 +379,27 @@ const NavBar = () => {
               </svg>
             </button>
           </div>
+          
+          {/* Mobile Suggestions */}
+          {searchSuggestions.length > 0 && searchQuery && (
+            <div className="mt-2 bg-white rounded-lg overflow-hidden">
+              {searchSuggestions.map((product) => (
+                <div
+                  key={product._id}
+                  onClick={() => {
+                    navigate(`/products/${product.category?.toLowerCase()}/${product._id}`);
+                    setSearchSuggestions([]);
+                    setSearchQuery("");
+                    setShowMobileSearch(false);
+                  }}
+                  className="px-4 py-3 hover:bg-gray-50 cursor-pointer flex flex-col border-b last:border-0 border-gray-100"
+                >
+                  <p className="text-sm font-medium text-gray-800">{product.name}</p>
+                  <p className="text-xs text-gray-500">{product.category}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

@@ -1,0 +1,382 @@
+{
+    "68fef6f903bede7fd17e933f": [
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.05489152463743459
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.053917929535101
+        },
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff013603bede7fd17e93c7": [
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.7375104127121335
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.4655067838836392
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.13109615058489393
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.08253628001037651
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff016b03bede7fd17e93cc": [
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.12419391490845098
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.0
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.0
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff02bc03bede7fd17e93d4": [
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.06166730145651838
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.05489152463743459
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.049246111297146684
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.045282769303459466
+        },
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        }
+    ],
+    "68ff0d9803bede7fd17e93df": [
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.13109615058489393
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.12484481200273317
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.12419391490845098
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0966847761228371
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.053917929535101
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.045282769303459466
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff118c03bede7fd17e93ff": [
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.7375104127121335
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.3433161003023206
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.0966847761228371
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.06087136593417697
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff134703bede7fd17e9434": [
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.4655067838836392
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.3433161003023206
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.12484481200273317
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.049246111297146684
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "68ff14c403bede7fd17e9456": [
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.07686596543320567
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.0
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.0
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        }
+    ],
+    "68ff297903bede7fd17e9498": [
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.08253628001037651
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.06087136593417697
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.0
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.0
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.0
+        },
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.0
+        },
+        {
+            "id": "69591595ad33da455bf3141c",
+            "score": 0.0
+        }
+    ],
+    "69591595ad33da455bf3141c": [
+        {
+            "id": "68ff14c403bede7fd17e9456",
+            "score": 0.07686596543320567
+        },
+        {
+            "id": "68ff02bc03bede7fd17e93d4",
+            "score": 0.06166730145651838
+        },
+        {
+            "id": "68fef6f903bede7fd17e933f",
+            "score": 0.0
+        },
+        {
+            "id": "68ff013603bede7fd17e93c7",
+            "score": 0.0
+        },
+        {
+            "id": "68ff016b03bede7fd17e93cc",
+            "score": 0.0
+        },
+        {
+            "id": "68ff0d9803bede7fd17e93df",
+            "score": 0.0
+        },
+        {
+            "id": "68ff118c03bede7fd17e93ff",
+            "score": 0.0
+        },
+        {
+            "id": "68ff134703bede7fd17e9434",
+            "score": 0.0
+        },
+        {
+            "id": "68ff297903bede7fd17e9498",
+            "score": 0.0
+        }
+    ]
+}

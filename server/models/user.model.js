@@ -18,7 +18,14 @@ const userSchema=new mongoose.Schema({
     avatar:{
       type:String,
       default:null
-    }        
+    },
+    dob: { type: String, default: "" },
+    gender: { type: String, default: "" },
+    phoneNumber: { type: String, default: "" },
+    address: { type: String, default: "" },
+    city: { type: String, default: "" },
+    state: { type: String, default: "" },
+    pincode: { type: String, default: "" }
  },
   {minimize:false}
 );

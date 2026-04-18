@@ -3,7 +3,7 @@ import { AppContext } from "../AppContext";
 import { assets } from "../assets/assets";
 
 const ProductCard = ({ product }) => {
-  const { navigate, addToCart, cartItems, removeFromCart } = useContext(AppContext);
+  const { navigate, addToCart, cartItems, removeFromCart, backendUrl } = useContext(AppContext);
 
   if (!product) return null; // Safeguard if product is undefined
 
@@ -12,17 +12,17 @@ const ProductCard = ({ product }) => {
       onClick={() => {
         navigate(`/products/${product.category?.toLowerCase()}/${product._id}`);
       }}
-      className="border border-gray-500/20 rounded-md md:px-4 px-3 py-2 bg-white min-w-56 max-w-56 w-full"
+      className="border border-gray-500/20 rounded-md md:px-4 px-3 py-4 bg-white min-w-56 max-w-56 w-full flex flex-col h-full"
     >
-      <div className="group cursor-pointer flex items-center justify-center px-2">
+      <div className="group cursor-pointer h-48 overflow-hidden bg-gray-50 rounded-md mb-3">
         <img
-          className="group-hover:scale-105 transition max-w-26 md:max-w-36"
-          src={`http://localhost:5000/images/${product.images?.[0] || "fallback.jpg"}`}
+          className="group-hover:scale-105 transition w-full h-full object-cover"
+          src={`${backendUrl}/products/${product.images?.[0] || 'fallback.jpg'}`}
           alt={product.name || "Product"}
         />
       </div>
 
-      <div className="text-gray-500/60 text-sm">
+      <div className="text-gray-500/60 text-sm flex flex-col flex-grow">
         <p>{product.category}</p>
         <p className="text-gray-700 font-medium text-lg truncate w-full">
           {product.name}

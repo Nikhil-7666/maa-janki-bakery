@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { AppContext } from "./AppContext";
 import { dummyAddress } from "./assets/assets";
 import toast from "react-hot-toast";
+import RecommendationSection from "./components/RecommendationSection";
 
 
 function Cart() {
@@ -13,7 +14,7 @@ function Cart() {
     cartItems,
     removeFromCart,
     updateCartItem,
-    axios,user,setCartItems
+    axios,user,setCartItems, backendUrl
   } = useContext(AppContext);
 
   const [cartArray, setCartArray] = useState([]);
@@ -21,6 +22,27 @@ function Cart() {
   const [address,setAddress] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentOption, setPaymentOption] = useState("COD");
+  const [cartRecommendations, setCartRecommendations] = useState([]);
+
+  // Fetch cart recommendations
+  useEffect(() => {
+    const fetchCartRecs = async () => {
+      const pIds = Object.keys(cartItems);
+      if (pIds.length > 0) {
+        try {
+          const { data } = await axios.post("/api/recommend/cart", { productIds: pIds });
+          if (data.success) {
+            setCartRecommendations(data.products);
+          }
+        } catch (error) {
+          console.error("Failed to fetch cart recommendations", error);
+        }
+      } else {
+        setCartRecommendations([]);
+      }
+    };
+    fetchCartRecs();
+  }, [cartItems]);
 
   // Populate cart array from products and cartItems
   const getCart = () => {
@@ -41,6 +63,15 @@ const getAddress = async () => {
       setAddress(data.addresses);
       if (data.addresses.length > 0) {
         setSelectedAddress(data.addresses[0]);
+      } else if (user && user.address) {
+        setSelectedAddress({
+          street: user.address,
+          city: user.city,
+          state: user.state,
+          country: "India",
+          zipCode: user.pincode,
+          _id: "profile_address"
+        });
       } else {
         toast("No addresses found, please add one.");
       }
@@ -78,7 +109,7 @@ const placeOrder = async () => {
           product: item._id,
           quantity: item.quantity,
         })),
-        address: selectedAddress._id,
+        address: selectedAddress._id === "profile_address" ? selectedAddress : selectedAddress._id,
       });
 
       if (data.success) {
@@ -122,14 +153,14 @@ const placeOrder = async () => {
             <div className="flex items-center md:gap-6 gap-3">
               <div
                 onClick={() => {
-                  navigate(`/product/${product.category.toLowerCase()}/${product._id}`);
+                  navigate(`/products/${product.category.toLowerCase()}/${product._id}`);
                   scrollTo(0, 0);
                 }}
                 className="cursor-pointer w-24 h-24 flex items-center justify-center border border-gray-300 rounded overflow-hidden"
               >
                 <img
                   className="max-w-full h-full object-cover"
-                  src={`http://localhost:5000/images/${product.images?.[0]}`}
+                  src={`${backendUrl}/products/${product.images?.[0]}`}
                   alt={product.name}
                 />
               </div>
@@ -222,7 +253,7 @@ const placeOrder = async () => {
           <div className="relative flex justify-between items-start mt-2">
             <p className="text-gray-500">
               {selectedAddress
-                ? `${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}, ${selectedAddress.country}`
+                ? `${selectedAddress.street}, ${selectedAddress.city}, ${selectedAddress.state}${selectedAddress.country ? `, ${selectedAddress.country}` : ""}`
                 : "No Address Found"}
             </p>
             <button
@@ -245,6 +276,24 @@ const placeOrder = async () => {
                     {addr.street}, {addr.city}, {addr.state}, {addr.country}
                   </p>
                 ))}
+                {user && user.address && (
+                  <p
+                    onClick={() => {
+                      setSelectedAddress({
+                        street: user.address,
+                        city: user.city,
+                        state: user.state,
+                        country: "India", // Assuming India for profile address
+                        zipCode: user.pincode,
+                        _id: "profile_address"
+                      });
+                      setShowAddress(false);
+                    }}
+                    className="text-gray-500 p-2 border-t border-gray-100 hover:bg-gray-100 cursor-pointer"
+                  >
+                   <span className="font-medium">[Saved]</span> {user.address}, {user.city}, {user.state}
+                  </p>
+                )}
                 <p
                   onClick={() => navigate("/add-address")}
                   className="text-indigo-500 text-center cursor-pointer p-2 hover:bg-indigo-500/10"
@@ -293,6 +342,7 @@ const placeOrder = async () => {
           {paymentOption === "COD" ? "Place Order" : "Pay Now"}
         </button>
       </div>
+      <RecommendationSection title="You May Also Like" products={cartRecommendations} />
     </div>
   );
 }

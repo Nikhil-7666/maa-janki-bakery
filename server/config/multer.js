@@ -1,7 +1,7 @@
 import multer from "multer";
  
   const storage=multer.diskStorage({
-    destination:"uploads",
+    destination:"products",
       
     filename:(req,file,cb)=>{
    

@@ -12,6 +12,9 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [offerPrice, setOfferPrice] = useState("");
   const [isDealOfDay, setIsDealOfDay] = useState(false);
+  const [tags, setTags] = useState("");
+  const [stock, setStock] = useState(0);
+  const [stockThreshold, setStockThreshold] = useState(10);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,10 +32,13 @@ const AddProduct = () => {
       formData.append("offerPrice", offerPrice);
       formData.append("category", category);
       formData.append("isDealOfDay", isDealOfDay);
+      formData.append("tags", tags);
+      formData.append("stock", stock);
+      formData.append("stockThreshold", stockThreshold);
 
       files.forEach((file) => formData.append("images", file));
 
-      const { data } = await axios.post("/api/product/add-product", formData, {
+      const { data } = await axios.post("/api/products", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -44,6 +50,9 @@ const AddProduct = () => {
         setCategory("");
         setFiles([]);
         setIsDealOfDay(false);
+        setTags("");
+        setStock(0);
+        setStockThreshold(10);
       } else {
         toast.error(data.message);
       }
@@ -129,6 +138,18 @@ const AddProduct = () => {
           </select>
         </div>
 
+        <div className="flex flex-col gap-1 max-w-md">
+          <label htmlFor="product-tags" className="text-base font-medium">Tags (Separate with comma)</label>
+          <input
+            id="product-tags"
+            type="text"
+            placeholder="e.g. fresh, sweet, healthy"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+          />
+        </div>
+
         <div className="flex items-center gap-5 flex-wrap">
           <div className="flex-1 flex flex-col gap-1 w-32">
             <label htmlFor="product-price" className="text-base font-medium">Product Price</label>
@@ -150,6 +171,33 @@ const AddProduct = () => {
               value={offerPrice}
               onChange={(e) => setOfferPrice(e.target.value)}
               placeholder="0"
+              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="flex items-center gap-5 flex-wrap">
+          <div className="flex-1 flex flex-col gap-1 w-32">
+            <label htmlFor="product-stock" className="text-base font-medium">Inventory Stock</label>
+            <input
+              id="product-stock"
+              type="number"
+              value={stock}
+              onChange={(e) => setStock(e.target.value)}
+              placeholder="0"
+              className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
+              required
+            />
+          </div>
+          <div className="flex-1 flex flex-col gap-1 w-32">
+            <label htmlFor="stock-threshold" className="text-base font-medium">Stock Threshold</label>
+            <input
+              id="stock-threshold"
+              type="number"
+              value={stockThreshold}
+              onChange={(e) => setStockThreshold(e.target.value)}
+              placeholder="10"
               className="outline-none md:py-2.5 py-2 px-3 rounded border border-gray-500/40"
               required
             />

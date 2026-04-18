@@ -2,23 +2,43 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "./AppContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "./assets/assets";
+import RecommendationSection from "./components/RecommendationSection";
 
 const ProductDetails = () => {
-  const { products, navigate, addToCart } = useContext(AppContext);
+  const { products, navigate, addToCart, trackInteraction, axios, backendUrl } = useContext(AppContext);
   const { id } = useParams();
 
   const [thumbnail, setThumbnail] = useState(null);
+  const [similarProducts, setSimilarProducts] = useState([]);
 
   const product = products.find((product) => product._id === id);
 
   // Set initial thumbnail
   useEffect(() => {
     if (product?.images?.[0]) {
-      setThumbnail(`http://localhost:5000/images/${product.images[0]}`);
+      const firstImage = product.images[0];
+      setThumbnail(`${backendUrl}/products/${firstImage}`);
     } else {
       setThumbnail(null);
     }
-  }, [product]);
+
+    if (product) {
+        trackInteraction(product._id, "view");
+        
+        // Fetch similar products
+        const fetchSimilar = async () => {
+            try {
+                const { data } = await axios.get(`/api/recommend/similar/${product._id}`);
+                if (data.success) {
+                    setSimilarProducts(data.products);
+                }
+            } catch (error) {
+                console.error("Failed to fetch similar products", error);
+            }
+        };
+        fetchSimilar();
+    }
+  }, [product, id]);
 
   if (!product) return <p>Product not found</p>;
 
@@ -42,12 +62,12 @@ const ProductDetails = () => {
               <div
                 key={index}
                 onClick={() =>
-                  setThumbnail(`http://localhost:5000/images/${image}`)
+                  setThumbnail(`${backendUrl}/products/${image}`)
                 }
                 className="border w-24 border-gray-500/30 rounded overflow-hidden cursor-pointer"
               >
                 <img
-                  src={`http://localhost:5000/images/${image}`}
+                  src={`${backendUrl}/products/${image}`}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-full h-full object-cover"
                 />
@@ -120,6 +140,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+      <RecommendationSection title="Similar Products" products={similarProducts} />
     </div>
   );
 };

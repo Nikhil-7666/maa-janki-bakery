@@ -20,6 +20,9 @@ const AppContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState({}); // always an object
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
+  
+  const backendUrl = axios.defaults.baseURL;
 
   // Fetch seller status
   const fetchSeller = async () => {
@@ -55,7 +58,7 @@ const AppContextProvider = ({ children }) => {
   // Fetch products
   const fetchProducts = async () => {
     try {
-      const { data } = await axios.get("/api/product/list");
+      const { data } = await axios.get("/api/products");
       if (data.success) {
         setProducts(data.products || []);
       }
@@ -133,6 +136,26 @@ const AppContextProvider = ({ children }) => {
   const prevSearchQueryRef = useRef(searchQuery);
   const isInitialMount = useRef(true);
   
+  // Debounced search for suggestions
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(async () => {
+      if (searchQuery.trim().length > 1) {
+        try {
+          const { data } = await axios.get(`/api/products/search?q=${searchQuery}`);
+          if (data.success) {
+            setSearchSuggestions(data.products.slice(0, 5)); // Limit to 5 for autocomplete
+          }
+        } catch (error) {
+          console.error("Search error:", error);
+        }
+      } else {
+        setSearchSuggestions([]);
+      }
+    }, 400); // 400ms debounce
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchQuery]);
+
   useEffect(() => {
     // Skip navigation on initial mount
     if (isInitialMount.current) {
@@ -185,10 +208,20 @@ const AppContextProvider = ({ children }) => {
     cartItems,
     searchQuery,
     setSearchQuery,
+    searchSuggestions,
+    setSearchSuggestions,
     axios,
     fetchProducts,
     fetchSeller,
-    setCartItems
+    setCartItems,
+    backendUrl,
+    trackInteraction: async (productId, action) => {
+      try {
+        await axios.post("/api/recommend/track", { productId, action });
+      } catch (error) {
+        console.error("Failed to track interaction", error);
+      }
+    }
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -43,7 +43,15 @@ export const registerUser=async(req,res)=>{
          success:true,
         user:{
          name:user.name,
-         email:user.email, 
+         email:user.email,
+         avatar:user.avatar,
+         dob:user.dob || "",
+         gender:user.gender || "",
+         phoneNumber:user.phoneNumber || "",
+         address:user.address || "",
+         city:user.city || "",
+         state:user.state || "",
+         pincode:user.pincode || "",
         },
    
    });     
@@ -91,7 +99,15 @@ export const registerUser=async(req,res)=>{
          success:true,
         user:{
          name:user.name,
-         email:user.email, 
+         email:user.email,
+         avatar:user.avatar,
+         dob:user.dob || "",
+         gender:user.gender || "",
+         phoneNumber:user.phoneNumber || "",
+         address:user.address || "",
+         city:user.city || "",
+         state:user.state || "",
+         pincode:user.pincode || "",
         },
    
    });     
@@ -135,7 +151,14 @@ export const isAuthUser=async(req,res)=>{
      user:{
        name:user.name,
        email:user.email,
-      avatar:user.avatar,
+       avatar:user.avatar,
+       dob:user.dob,
+       gender:user.gender,
+       phoneNumber:user.phoneNumber,
+       address:user.address,
+       city:user.city,
+       state:user.state,
+       pincode:user.pincode,
      },
    });
   }
@@ -170,6 +193,13 @@ export const uploadAvatar = async (req, res) => {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        dob: user.dob,
+        gender: user.gender,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        pincode: user.pincode,
       },
     });
   } catch (error) {
@@ -214,6 +244,55 @@ export const deleteAvatar = async (req, res) => {
         name: user.name,
         email: user.email,
         avatar: user.avatar,
+        dob: user.dob,
+        gender: user.gender,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        city: user.city,
+        state: user.state,
+        pincode: user.pincode,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error", success: false });
+  }
+};
+
+// update user profile : /api/user/update-profile
+export const updateUserProfile = async (req, res) => {
+  try {
+    const userId = req.user;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorised", success: false });
+    }
+
+    const { name, dob, gender, phoneNumber, address, city, state, pincode } = req.body;
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { name, dob, gender, phoneNumber, address, city, state, pincode },
+      { new: true, runValidators: true }
+    ).select("-password");
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found", success: false });
+    }
+
+    res.json({
+      success: true,
+      message: "Profile updated successfully",
+      user: {
+        name: updatedUser.name,
+        email: updatedUser.email,
+        avatar: updatedUser.avatar,
+        dob: updatedUser.dob || "",
+        gender: updatedUser.gender || "",
+        phoneNumber: updatedUser.phoneNumber || "",
+        address: updatedUser.address || "",
+        city: updatedUser.city || "",
+        state: updatedUser.state || "",
+        pincode: updatedUser.pincode || "",
       },
     });
   } catch (error) {
