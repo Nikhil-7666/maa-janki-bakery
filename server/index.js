@@ -4,6 +4,10 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import path from "path";
 import { connectDB } from "./config/connectDB.js";
+import dns from "node:dns";
+dns.setDefaultResultOrder('ipv4first');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 dotenv.config();
 import userRoutes from "./routes/user.routes.js";
 import sellerRoutes from "./routes/seller.routes.js";

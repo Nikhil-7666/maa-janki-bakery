@@ -3,6 +3,7 @@ import { AppContext } from "./AppContext";
 import { Link, useParams } from "react-router-dom";
 import { assets } from "./assets/assets";
 import RecommendationSection from "./components/RecommendationSection";
+import { getImageUrl } from "./utils/imageUrl";
 
 const ProductDetails = () => {
   const { products, navigate, addToCart, trackInteraction, axios, backendUrl } = useContext(AppContext);
@@ -17,7 +18,7 @@ const ProductDetails = () => {
   useEffect(() => {
     if (product?.images?.[0]) {
       const firstImage = product.images[0];
-      setThumbnail(`${backendUrl}/products/${firstImage}`);
+      setThumbnail(getImageUrl(firstImage, backendUrl));
     } else {
       setThumbnail(null);
     }
@@ -62,12 +63,12 @@ const ProductDetails = () => {
               <div
                 key={index}
                 onClick={() =>
-                  setThumbnail(`${backendUrl}/products/${image}`)
+                  setThumbnail(getImageUrl(image, backendUrl))
                 }
                 className="border w-24 border-gray-500/30 rounded overflow-hidden cursor-pointer"
               >
                 <img
-                  src={`${backendUrl}/products/${image}`}
+                  src={getImageUrl(image, backendUrl)}
                   alt={`Thumbnail ${index + 1}`}
                   className="w-full h-full object-cover"
                 />

@@ -2,6 +2,7 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { Link } from "react-router-dom";
+import { getImageUrl } from "../utils/imageUrl";
 
 const RecommendationSection = ({ title, products: recommendedProducts }) => {
   const { navigate, backendUrl } = useContext(AppContext);
@@ -23,7 +24,7 @@ const RecommendationSection = ({ title, products: recommendedProducts }) => {
           >
             <div className="h-48 bg-gray-50 overflow-hidden">
               <img
-                src={`${backendUrl}/products/${product.images?.[0]}`}
+                src={getImageUrl(product.images?.[0], backendUrl)}
                 alt={product.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />

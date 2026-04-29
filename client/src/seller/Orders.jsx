@@ -1,6 +1,7 @@
 import {useState,useEffect,useContext} from "react";
 import {dummyOrders,assets} from "../assets/assets";
 import {AppContext} from "../AppContext";
+import { getImageUrl } from "../utils/imageUrl";
 
 const Orders = () => {
     const [orders, setOrders] = useState(null); // Initialize with null for loading check
@@ -54,9 +55,7 @@ const Orders = () => {
                             <div className="flex gap-5">
                                 <img
                                     className="w-12 h-12 object-cover opacity-60"
-                                    src={order.items?.[0]?.product?.images?.[0] 
-                                        ? `${backendUrl}/products/${order.items[0].product.images[0]}` 
-                                        : "/placeholder.png"}
+                                    src={getImageUrl(order.items?.[0]?.product?.images?.[0], backendUrl)}
                                     alt="Product"
                                 />
                                 <div className="flex flex-col gap-1">

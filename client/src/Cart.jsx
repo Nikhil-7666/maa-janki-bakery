@@ -3,6 +3,7 @@ import { AppContext } from "./AppContext";
 import { dummyAddress } from "./assets/assets";
 import toast from "react-hot-toast";
 import RecommendationSection from "./components/RecommendationSection";
+import { getImageUrl } from "./utils/imageUrl";
 
 
 function Cart() {
@@ -160,7 +161,7 @@ const placeOrder = async () => {
               >
                 <img
                   className="max-w-full h-full object-cover"
-                  src={`${backendUrl}/products/${product.images?.[0]}`}
+                   src={getImageUrl(product.images?.[0], backendUrl)}
                   alt={product.name}
                 />
               </div>

@@ -1,382 +1,58 @@
 {
-    "68fef6f903bede7fd17e933f": [
+    "69c00d16805241527bf87db3": [
         {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.05489152463743459
+            "id": "69f1ca5640ec33491108a1fa",
+            "score": 0.16746132304901878
         },
         {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.053917929535101
+            "id": "69f1c8e740ec33491108a1f5",
+            "score": 0.060445869905269366
         },
         {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
+            "id": "69ee33c4727c067464ccbc28",
+            "score": 0.058672379129104515
         }
     ],
-    "68ff013603bede7fd17e93c7": [
+    "69ee33c4727c067464ccbc28": [
         {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.7375104127121335
+            "id": "69f1ca5640ec33491108a1fa",
+            "score": 0.13488897799270566
         },
         {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.4655067838836392
+            "id": "69f1c8e740ec33491108a1f5",
+            "score": 0.08573429137721822
         },
         {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.13109615058489393
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.08253628001037651
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
+            "id": "69c00d16805241527bf87db3",
+            "score": 0.058672379129104515
         }
     ],
-    "68ff016b03bede7fd17e93cc": [
+    "69f1c8e740ec33491108a1f5": [
         {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.12419391490845098
+            "id": "69f1ca5640ec33491108a1fa",
+            "score": 0.244700795805588
         },
         {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
+            "id": "69ee33c4727c067464ccbc28",
+            "score": 0.08573429137721822
         },
         {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.0
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.0
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
+            "id": "69c00d16805241527bf87db3",
+            "score": 0.060445869905269366
         }
     ],
-    "68ff02bc03bede7fd17e93d4": [
+    "69f1ca5640ec33491108a1fa": [
         {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.06166730145651838
+            "id": "69f1c8e740ec33491108a1f5",
+            "score": 0.244700795805588
         },
         {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.05489152463743459
+            "id": "69c00d16805241527bf87db3",
+            "score": 0.16746132304901878
         },
         {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.049246111297146684
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.045282769303459466
-        },
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        }
-    ],
-    "68ff0d9803bede7fd17e93df": [
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.13109615058489393
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.12484481200273317
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.12419391490845098
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0966847761228371
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.053917929535101
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.045282769303459466
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
-        }
-    ],
-    "68ff118c03bede7fd17e93ff": [
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.7375104127121335
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.3433161003023206
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.0966847761228371
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.06087136593417697
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
-        }
-    ],
-    "68ff134703bede7fd17e9434": [
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.4655067838836392
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.3433161003023206
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.12484481200273317
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.049246111297146684
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
-        }
-    ],
-    "68ff14c403bede7fd17e9456": [
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.07686596543320567
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.0
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.0
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
-        }
-    ],
-    "68ff297903bede7fd17e9498": [
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.08253628001037651
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.06087136593417697
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.0
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.0
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.0
-        },
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.0
-        },
-        {
-            "id": "69591595ad33da455bf3141c",
-            "score": 0.0
-        }
-    ],
-    "69591595ad33da455bf3141c": [
-        {
-            "id": "68ff14c403bede7fd17e9456",
-            "score": 0.07686596543320567
-        },
-        {
-            "id": "68ff02bc03bede7fd17e93d4",
-            "score": 0.06166730145651838
-        },
-        {
-            "id": "68fef6f903bede7fd17e933f",
-            "score": 0.0
-        },
-        {
-            "id": "68ff013603bede7fd17e93c7",
-            "score": 0.0
-        },
-        {
-            "id": "68ff016b03bede7fd17e93cc",
-            "score": 0.0
-        },
-        {
-            "id": "68ff0d9803bede7fd17e93df",
-            "score": 0.0
-        },
-        {
-            "id": "68ff118c03bede7fd17e93ff",
-            "score": 0.0
-        },
-        {
-            "id": "68ff134703bede7fd17e9434",
-            "score": 0.0
-        },
-        {
-            "id": "68ff297903bede7fd17e9498",
-            "score": 0.0
+            "id": "69ee33c4727c067464ccbc28",
+            "score": 0.13488897799270566
         }
     ]
 }
