@@ -4,6 +4,10 @@ import path from "path";
 import dotenv from "dotenv";
 import Product from "./models/product.models.js";
 
+import dns from "node:dns";
+dns.setDefaultResultOrder('ipv4first');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
+
 dotenv.config();
 
 const exportProducts = async () => {

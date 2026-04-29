@@ -1,11 +1,25 @@
 import express from 'express';
 import axios from 'axios';
+import fs from 'fs';
+import path from 'path';
 
 const router = express.Router();
 
-const SYSTEM_PROMPT =
+const SYSTEM_PROMPT_BASE =
     "You are a helpful and friendly assistant for Maa Janki Bakery & Farsan Store. " +
     "Help users find bakery items, sweets, snacks, and farsan. Be polite, concise, and helpful.";
+
+const getContext = () => {
+    try {
+        const correlationPath = path.join(process.cwd(), 'controllers', 'correlation.md');
+        if (fs.existsSync(correlationPath)) {
+            return fs.readFileSync(correlationPath, 'utf8');
+        }
+    } catch (error) {
+        console.error("[Chatbot] Error reading correlation.md:", error);
+    }
+    return "";
+};
 
 // PUBLIC route - no auth middleware
 router.post('/', async (req, res) => {
@@ -30,7 +44,10 @@ router.post('/', async (req, res) => {
             {
                 model: "llama-3.3-70b-versatile",
                 messages: [
-                    { role: "system", content: SYSTEM_PROMPT },
+                    { 
+                        role: "system", 
+                        content: `${SYSTEM_PROMPT_BASE}\n\nUse the following business information to answer user queries accurately:\n\n${getContext()}` 
+                    },
                     { role: "user", content: message.trim() }
                 ],
                 temperature: 0.7,

@@ -1,46 +1,94 @@
 [
     {
-        "_id": "69e79e59cb9253ebb4c59498",
-        "name": "BirthDay Party Pack",
-        "price": "529",
-        "description": "Includes:Wafers,Namkeen,Chochlates,Coldrinks",
-        "offerPrice": "499",
+        "stock": 0,
+        "stockThreshold": 10,
+        "_id": "69c00d16805241527bf87db3",
+        "name": "ChatPata Khakra",
+        "price": "80",
+        "description": "Spicy ",
+        "offerPrice": "64",
         "images": [
-            "1776787033086Screenshot 2026-04-21 212453.png"
+            "https://res.cloudinary.com/dtel4f5yl/image/upload/v1774193941/mjkshop/products/1774193938821Screenshot_2026-03-22_121156_uw0wgg.png"
         ],
-        "category": "Deal",
-        "isDealOfDay": true,
-        "inStock": true,
-        "stock": 20,
-        "stockThreshold": 0,
+        "category": "Namkeens",
         "tags": [
             "snacks",
-            "namkeen"
+            "namkeen",
+            "chatpata",
+            "khakra",
+            "namkeens"
         ],
-        "createdAt": "2026-04-21T15:57:13.142Z",
-        "updatedAt": "2026-04-21T15:57:13.142Z",
+        "isDealOfDay": true,
+        "inStock": true,
+        "createdAt": "2026-03-22T15:39:02.719Z",
+        "updatedAt": "2026-04-29T13:34:09.881Z",
         "__v": 0
     },
     {
-        "_id": "69ee31b0194897f4f82db147",
-        "name": "BirthDay Party Pack for 2",
-        "price": "540",
-        "description": "Tasty",
-        "offerPrice": "499",
+        "_id": "69ee33c4727c067464ccbc28",
+        "name": "BirthDay Party Pack",
+        "price": "499",
+        "description": "Inside Info",
+        "offerPrice": "539",
         "images": [
-            "1777217968902Screenshot 2026-04-21 212453.png"
+            "1777218500602Screenshot 2026-04-21 212453.png"
         ],
         "category": "Celebration",
-        "isDealOfDay": false,
+        "isDealOfDay": true,
         "inStock": true,
-        "stock": 200,
+        "stock": 100,
         "stockThreshold": 10,
         "tags": [
             "snacks",
             "namkeen"
         ],
-        "createdAt": "2026-04-26T15:39:28.937Z",
-        "updatedAt": "2026-04-26T15:39:28.937Z",
+        "createdAt": "2026-04-26T15:48:20.655Z",
+        "updatedAt": "2026-04-26T15:48:20.655Z",
+        "__v": 0
+    },
+    {
+        "_id": "69f1c8e740ec33491108a1f5",
+        "name": "Goli Soda",
+        "price": "20",
+        "description": "All New Exiting Flavour",
+        "offerPrice": "20",
+        "images": [
+            "https://res.cloudinary.com/dtel4f5yl/image/upload/v1777453285/maa-janki-bakery/products/e5vjeykqd78yep3wt5sx.png"
+        ],
+        "category": "Coldrinks",
+        "isDealOfDay": false,
+        "inStock": true,
+        "stock": 108,
+        "stockThreshold": 10,
+        "tags": [
+            "snacks",
+            "namkeen"
+        ],
+        "createdAt": "2026-04-29T09:01:27.089Z",
+        "updatedAt": "2026-04-29T09:01:27.089Z",
+        "__v": 0
+    },
+    {
+        "_id": "69f1ca5640ec33491108a1fa",
+        "name": "Spicy Banana Wafer",
+        "price": "60",
+        "description": "200gm",
+        "offerPrice": "50",
+        "images": [
+            "https://res.cloudinary.com/dtel4f5yl/image/upload/v1777453653/maa-janki-bakery/products/sahkhgnq3qepimupedjo.png"
+        ],
+        "category": "Snacks",
+        "isDealOfDay": false,
+        "inStock": true,
+        "stock": 20,
+        "stockThreshold": 4,
+        "tags": [
+            "snacks",
+            "namkeen",
+            "coldrinks"
+        ],
+        "createdAt": "2026-04-29T09:07:34.821Z",
+        "updatedAt": "2026-04-29T09:07:34.821Z",
         "__v": 0
     }
 ]
