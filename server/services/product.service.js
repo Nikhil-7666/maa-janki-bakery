@@ -1,4 +1,5 @@
 import Product from "../models/product.models.js";
+import { v2 as cloudinary } from "cloudinary";
 import { spawn } from "child_process";
 import path from "path";
 import fs from "fs";
@@ -64,20 +65,22 @@ class ProductService {
     return results.map(result => result.item);
   }
 
-  async deleteFiles(filenames) {
-    if (!filenames || !Array.isArray(filenames)) return;
-    
-    filenames.forEach(filename => {
-      const filePath = path.join(process.cwd(), "products", filename);
-      if (fs.existsSync(filePath)) {
-        try {
-          fs.unlinkSync(filePath);
-          console.log(`Deleted file: ${filename}`);
-        } catch (err) {
-          console.error(`Error deleting file ${filename}:`, err);
+  async deleteFiles(imageUrls) {
+    if (!imageUrls || !Array.isArray(imageUrls)) return;
+
+    for (const url of imageUrls) {
+      try {
+        // Extract Cloudinary public_id from the URL
+        // URL format: https://res.cloudinary.com/<cloud>/image/upload/v<version>/<public_id>.<ext>
+        const match = url.match(/\/upload\/(?:v\d+\/)?(.+)\.[a-z]+$/i);
+        if (match && match[1]) {
+          await cloudinary.uploader.destroy(match[1]);
+          console.log(`Deleted from Cloudinary: ${match[1]}`);
         }
+      } catch (err) {
+        console.error(`Error deleting image from Cloudinary: ${url}`, err);
       }
-    });
+    }
   }
 
   refreshRecommendations() {

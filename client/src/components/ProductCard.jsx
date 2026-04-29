@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import { assets } from "../assets/assets";
+import { getImageUrl } from "../utils/imageUrl";
 
 const ProductCard = ({ product }) => {
   const { navigate, addToCart, cartItems, removeFromCart, backendUrl } = useContext(AppContext);
@@ -17,7 +18,7 @@ const ProductCard = ({ product }) => {
       <div className="group cursor-pointer h-48 overflow-hidden bg-gray-50 rounded-md mb-3">
         <img
           className="group-hover:scale-105 transition w-full h-full object-cover"
-          src={`${backendUrl}/products/${product.images?.[0] || 'fallback.jpg'}`}
+          src={getImageUrl(product.images?.[0], backendUrl)}
           alt={product.name || "Product"}
         />
       </div>

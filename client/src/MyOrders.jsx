@@ -3,6 +3,7 @@ import { dummyOrders } from "./assets/assets";
 import {AppContext} from "./AppContext";
 import toast from "react-hot-toast";
 import BackButton from "./components/BackButton";
+import { getImageUrl } from "./utils/imageUrl";
 
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
@@ -65,7 +66,7 @@ function MyOrders() {
               <div className="flex items-center mb-4 md:mb-0">
                 <div className="p-4 rounded-lg">
                   <img
-                    src={`${backendUrl}/products/${item.product.images?.[0]}`}
+                    src={getImageUrl(item.product.images?.[0], backendUrl)}
                     alt={item.product.name}
                     className="w-16 h-16"
                   />

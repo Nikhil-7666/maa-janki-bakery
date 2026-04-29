@@ -3,6 +3,7 @@ import { assets, categories } from "../assets/assets";
 import { AppContext } from "../AppContext";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
+import { getImageUrl } from "../utils/imageUrl";
 
 const EditProduct = () => {
   const { axios, backendUrl, fetchProducts } = useContext(AppContext);
@@ -100,7 +101,7 @@ const EditProduct = () => {
           <div className="flex flex-wrap gap-2 mt-2">
             {existingImages.map((img, idx) => (
               <div key={idx} className="relative group">
-                <img src={`${backendUrl}/products/${img}`} className="w-20 h-20 object-cover border rounded" />
+                <img src={getImageUrl(img, backendUrl)} className="w-20 h-20 object-cover border rounded" />
                 <button 
                   type="button" 
                   onClick={() => handleRemoveExistingImage(img)}

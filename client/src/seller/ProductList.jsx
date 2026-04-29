@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AppContext } from "../AppContext";
 import toast from "react-hot-toast";
+import { getImageUrl } from "../utils/imageUrl";
 
 const ProductList = () => {
   const { products, axios, fetchProducts, backendUrl, navigate } = useContext(AppContext);
@@ -55,9 +56,7 @@ const ProductList = () => {
                       <div className="border border-gray-300 rounded overflow-hidden">
                         <img
                           src={
-                            product.images?.[0]
-                              ? `${backendUrl}/products/${product.images[0]}`
-                              : "/placeholder.png"
+                            getImageUrl(product.images?.[0], backendUrl)
                           }
                           alt={product.name || "Product"}
                           className="w-16"

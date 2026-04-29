@@ -1,10 +1,31 @@
 import productService from "../services/product.service.js";
+import { v2 as cloudinary } from "cloudinary";
+
+// Helper: upload a single file buffer to Cloudinary, returns secure_url
+const uploadToCloudinary = (file) => {
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: "maa-janki-bakery/products" },
+      (error, result) => {
+        if (error) return reject(error);
+        resolve(result.secure_url);
+      }
+    );
+    stream.end(file.buffer);
+  });
+};
 
 // add product :/api/product/add
 export const addProduct = async (req, res) => {
   try {
     const { name, price, offerPrice, description, category, isDealOfDay, tags, stock, stockThreshold } = req.body;
-    const images = req.files?.map((file) => file.filename);
+
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ success: false, message: "All fields including images are required" });
+    }
+
+    // Upload all images to Cloudinary
+    const images = await Promise.all(req.files.map(uploadToCloudinary));
 
     if (!name || !price || !offerPrice || !description || !category || !images || images.length === 0) {
       return res.status(400).json({ success: false, message: "All fields including images are required" });
@@ -38,7 +59,11 @@ export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, price, offerPrice, description, category, isDealOfDay, inStock, tags, keepImages, stock, stockThreshold } = req.body;
-    const newImages = req.files?.map((file) => file.filename);
+
+    // Upload any newly added images to Cloudinary
+    const newImages = req.files && req.files.length > 0
+      ? await Promise.all(req.files.map(uploadToCloudinary))
+      : [];
 
     const product = await productService.getProductById(id);
     if (!product) return res.status(404).json({ success: false, message: "Product not found" });
@@ -58,7 +83,7 @@ export const updateProduct = async (req, res) => {
       updateData.tags = Array.isArray(tags) ? tags : (tags ? tags.split(",").map(t => t.trim()) : []);
     }
 
-    // Image logic: keepImages + newImages
+    // Image logic: keepImages (existing Cloudinary URLs to retain) + newImages
     let imagesToKeep = [];
     if (keepImages) {
         try {
@@ -68,14 +93,14 @@ export const updateProduct = async (req, res) => {
         }
     }
 
-    // Identify removed images for cleanup
+    // Identify removed Cloudinary URLs for cleanup
     const removedImages = product.images.filter(img => !imagesToKeep.includes(img));
     
-    updateData.images = [...imagesToKeep, ...(newImages || [])];
+    updateData.images = [...imagesToKeep, ...newImages];
 
     const updatedProduct = await productService.updateProduct(id, updateData);
     
-    // Cleanup physical files
+    // Delete removed images from Cloudinary
     if (removedImages.length > 0) {
         await productService.deleteFiles(removedImages);
     }

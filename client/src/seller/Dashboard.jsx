@@ -5,6 +5,7 @@ import {
   PieChart, Pie, Cell, BarChart, Bar, Legend
 } from "recharts";
 import { assets } from "../assets/assets";
+import { getImageUrl } from "../utils/imageUrl";
 
 const Dashboard = () => {
     const { axios, backendUrl, navigate } = useContext(AppContext);
@@ -178,7 +179,7 @@ const Dashboard = () => {
                                     <tr key={i} className="text-sm">
                                         <td className="py-4 flex items-center gap-3">
                                             <img 
-                                                src={order.items[0]?.product?.images?.[0] ? `${backendUrl}/products/${order.items[0].product.images[0]}` : "/placeholder.png"} 
+                                                src={getImageUrl(order.items[0]?.product?.images?.[0], backendUrl)}
                                                 className="w-8 h-8 rounded-md object-cover border" 
                                                 alt=""
                                             />
@@ -218,7 +219,7 @@ const Dashboard = () => {
                                 <div key={i} className="flex items-center justify-between p-3 rounded-lg bg-red-50/50 border border-red-100/50">
                                     <div className="flex items-center gap-3">
                                         <img 
-                                            src={product.images[0] ? `${backendUrl}/products/${product.images[0]}` : "/placeholder.png"} 
+                                            src={getImageUrl(product.images[0], backendUrl)}
                                             className="w-10 h-10 rounded-md object-cover border border-red-100" 
                                             alt=""
                                         />
